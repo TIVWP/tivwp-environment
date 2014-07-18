@@ -3,7 +3,7 @@
  * Plugin Name: TIVWP Environment
  * Plugin URI: https://github.com/TIVWP/tivwp-environment
  * Description: Setup WordPress environment (a must-use plugin)
- * Version: 14.06.27
+ * Version: 14.07.18
  * Author: tivnet
  * Author URI: https://profiles.wordpress.org/tivnet
  * License: GPL2
@@ -97,6 +97,21 @@ add_filter( 'wp_headers', function ( $_ ) {
 	unset( $_['X-Pingback'] );
 	return $_;
 } );
+
+/**
+ * Add custom excerpt metabox to pages
+ */
+add_action( 'admin_menu', function () {
+		add_meta_box(
+			'postexcerpt',
+			__( 'Excerpt' ),
+			'post_excerpt_meta_box',
+			'page',
+			'normal',
+			'core'
+		);
+	}
+);
 
 /**
  * Class TIVWP_Debug
